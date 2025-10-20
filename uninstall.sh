@@ -8,6 +8,7 @@ set -e
 PROJECT_NAME="diskget"
 INSTALL_DIR="/opt/$PROJECT_NAME"
 BIN_LINK="/usr/local/bin/$PROJECT_NAME"
+rm -f /bin/diskget
 
 echo "  Uninstalling diskget..."
 
