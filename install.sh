@@ -27,7 +27,7 @@ EOF
 
 check_root() {
     if [[ $EUID -eq 0 ]]; then
-        echo "❌ Error: Do not run this script as root."
+        echo " Error: Do not run this script as root."
         echo "The script will request sudo privileges when needed."
         exit 1
     fi
@@ -37,36 +37,36 @@ check_dependencies() {
     local deps=("sudo" "find" "df" "awk")
     for dep in "${deps[@]}"; do
         if ! command -v "$dep" &> /dev/null; then
-            echo "❌ Error: Required tool '$dep' is not installed."
+            echo " Error: Required tool '$dep' is not installed."
             exit 1
         fi
     done
 }
 
 install_diskget() {
-    echo "🚀 Installing diskget..."
+    echo " Installing diskget..."
     
     # Create installation directory
-    echo "📁 Creating installation directory: $INSTALL_DIR"
+    echo " Creating installation directory: $INSTALL_DIR"
     sudo mkdir -p "$INSTALL_DIR"
     
     # Copy main script
-    echo "📄 Installing main script..."
+    echo " Installing main script..."
     sudo cp "$SCRIPT_DIR/diskget.sh" "$INSTALL_DIR/"
     sudo chmod +x "$INSTALL_DIR/diskget.sh"
     
     # Copy uninstall script
     if [[ -f "$SCRIPT_DIR/uninstall.sh" ]]; then
-        echo "📄 Installing uninstall script..."
+        echo " Installing uninstall script..."
         sudo cp "$SCRIPT_DIR/uninstall.sh" "$INSTALL_DIR/"
         sudo chmod +x "$INSTALL_DIR/uninstall.sh"
     fi
     
     # Create symlink in /usr/local/bin
-    echo "🔗 Creating symlink: $BIN_LINK -> $INSTALL_DIR/diskget.sh"
+    echo " Creating symlink: $BIN_LINK -> $INSTALL_DIR/diskget.sh"
     sudo ln -sf "$INSTALL_DIR/diskget.sh" "$BIN_LINK"
     
-    echo "✅ Installation completed successfully!"
+    echo " Installation completed successfully!"
     echo
     echo "Usage:"
     echo "  diskget --help"
@@ -74,11 +74,11 @@ install_diskget() {
 }
 
 uninstall_diskget() {
-    echo "🗑️  Uninstalling diskget..."
+    echo "  Uninstalling diskget..."
     
     # Remove symlink
     if [[ -L "$BIN_LINK" ]]; then
-        echo "🔗 Removing symlink: $BIN_LINK"
+        echo " Removing symlink: $BIN_LINK"
         sudo rm "$BIN_LINK"
     fi
     
@@ -88,7 +88,7 @@ uninstall_diskget() {
         sudo rm -rf "$INSTALL_DIR"
     fi
     
-    echo "✅ Uninstallation completed successfully!"
+    echo " Uninstallation completed successfully!"
 }
 
 # Parse arguments
