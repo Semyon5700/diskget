@@ -84,7 +84,7 @@ uninstall_diskget() {
     
     # Remove installation directory
     if [[ -d "$INSTALL_DIR" ]]; then
-        echo "📁 Removing installation directory: $INSTALL_DIR"
+        echo " Removing installation directory: $INSTALL_DIR"
         sudo rm -rf "$INSTALL_DIR"
     fi
     
@@ -110,7 +110,7 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
         *)
-            echo "❌ Error: Unknown option $1"
+            echo " Error: Unknown option $1"
             show_help
             exit 1
             ;;
