@@ -84,7 +84,7 @@ uninstall_diskget() {
     
     # Remove installation directory
     if [[ -d "$INSTALL_DIR" ]]; then
-        echo " Removing installation directory: $INSTALL_DIR"
+        echo "Removing installation directory: $INSTALL_DIR"
         sudo rm -rf "$INSTALL_DIR"
     fi
     
